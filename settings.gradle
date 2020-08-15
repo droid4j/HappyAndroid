@@ -1,3 +1,8 @@
+include ':other'
+include ':feature'
+include ':architecture'
+include ':commonui'
+include ':basic'
 include ':router-api'
 include ':app'
 rootProject.name = "HappyAndroid"
