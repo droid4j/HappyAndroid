@@ -14,6 +14,7 @@ public class App extends Application {
     }
 
     private void initRoutes() {
-        Router.getInstance().register("app/main", MainActivity.class);
+        Router.init(this);
+        // Router.getInstance().register("app/main", MainActivity.class);
     }
 }

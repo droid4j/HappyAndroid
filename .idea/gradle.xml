@@ -17,7 +17,9 @@
             <option value="$PROJECT_DIR$/commonui" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/other" />
+            <option value="$PROJECT_DIR$/router-annotation" />
             <option value="$PROJECT_DIR$/router-api" />
+            <option value="$PROJECT_DIR$/router-compiler" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

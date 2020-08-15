@@ -17,6 +17,7 @@
                 <action android:name="route.basic.main" />
             </intent-filter>
         </activity>
+        <activity android:name=".SecondBasicActivity" />
     </application>
 
 </manifest>
