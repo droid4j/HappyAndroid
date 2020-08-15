@@ -45,6 +45,10 @@ startActivity(intent);
 
 思路：以 path 为 key，与 class 为 value，将所有 activity，统一放到 map中，然后根据 key 取出目标 activity ，然后去执行跳转。
 
+#### 1.2.1 思考
+
+如果项目中有非常多的 activity，那是不是就得在 init() 方法中不断的注册？显然这样很啰嗦，一旦忘记添加，就无法跳转。为了解决这个问题，我们可以做一个规范，让每个 module 在自己内部注册，这样，我们就不用关心是否添加配置了。
+
 
 # UI
 
