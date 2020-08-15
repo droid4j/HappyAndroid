@@ -24,7 +24,7 @@ public class Router {
 
     public static void init(Application context) {
         try {
-            Set<String> classNames = ClassUtils.getFileNameByPackageName(context, "cn.dapan.router");
+            Set<String> classNames = ClassUtils.getFileNameByPackageName(context, "cn.dapan.routers");
             for (String className : classNames) {
                 Class<?> aClass = Class.forName(className);
                 if (IRouteDelegate.class.isAssignableFrom(aClass)) {
