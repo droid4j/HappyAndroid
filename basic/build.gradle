@@ -50,5 +50,6 @@ dependencies {
 
     implementation project(':router-api')
     implementation project(':router-annotation')
+    implementation project(':download')
     annotationProcessor project(':router-compiler')
 }
