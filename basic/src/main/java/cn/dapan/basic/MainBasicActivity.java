@@ -17,6 +17,6 @@ public class MainBasicActivity extends AppCompatActivity {
     }
 
     public void gotoApp(View view) {
-        Router.getInstance().start(this, "/app/main");
+        Router.getInstance().start(this, "/basic/second");
     }
 }

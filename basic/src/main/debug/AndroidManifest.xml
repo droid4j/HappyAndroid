@@ -4,6 +4,7 @@
 
     <application>
         <activity android:name=".MainBasicActivity" />
+        <activity android:name=".SecondBasicActivity" />
     </application>
 
 </manifest>

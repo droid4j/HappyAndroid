@@ -11,6 +11,7 @@ import java.util.Set;
 public class Router {
 
     private static Router instance = new Router();
+    private static boolean isRegisterFromPlugin;
 
     public static Router getInstance() {
         return instance;
@@ -22,7 +23,21 @@ public class Router {
 
     private static Map<String, Class<? extends Activity>> routers = new HashMap<>();
 
+    private static void loadRouterMap() {
+        isRegisterFromPlugin = false;
+//        new basicRouter().load(routers);
+//        new appRouter().load(routers);
+//        new Router().toString();
+//        isRegisterFromPlugin = true;
+    }
+
     public static void init(Application context) {
+
+        loadRouterMap();
+        if (isRegisterFromPlugin) {
+            return;
+        }
+
         try {
             Set<String> classNames = ClassUtils.getFileNameByPackageName(context, "cn.dapan.routers");
             for (String className : classNames) {
