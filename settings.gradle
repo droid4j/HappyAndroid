@@ -1,3 +1,4 @@
+include ':download'
 include ':router-compiler'
 include ':router-annotation'
 include ':other'

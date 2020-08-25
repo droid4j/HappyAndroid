@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/basic" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/commonui" />
+            <option value="$PROJECT_DIR$/download" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/other" />
             <option value="$PROJECT_DIR$/router-annotation" />
