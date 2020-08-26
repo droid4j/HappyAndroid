@@ -2,7 +2,7 @@ package cn.dapan.download;
 
 import java.util.Observable;
 
-public class DataChanger extends Observable {
+class DataChanger extends Observable {
 
     private static DataChanger sInstance = new DataChanger();
     private DataChanger() {}

@@ -2,7 +2,10 @@ package cn.dapan.download;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.util.HashMap;
@@ -14,6 +17,14 @@ public class DownloadService extends Service {
 
     private ExecutorService mExecutor;
     private Map<String, DownloadTask> mTasks = new HashMap<>();
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            DataChanger.getInstance().postStatus((DownloadEntity) msg.obj);
+        }
+    };
 
     @Nullable
     @Override
@@ -79,7 +90,7 @@ public class DownloadService extends Service {
     }
 
     private void startDownload(DownloadEntity entity) {
-        DownloadTask task = new DownloadTask(entity);
+        DownloadTask task = new DownloadTask(entity, mHandler);
         mTasks.put(entity.id, task);
         mExecutor.execute(task);
     }

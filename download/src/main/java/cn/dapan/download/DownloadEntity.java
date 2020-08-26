@@ -24,7 +24,7 @@ public class DownloadEntity implements Serializable {
     }
 
     public enum  DownloadStatus {
-        waiting, downloading, pause, resume, cancel, completed
+        idle, waiting, downloading, pause, resume, cancel, completed
     }
 
     @Override
@@ -32,10 +32,18 @@ public class DownloadEntity implements Serializable {
         return "{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
+//                ", url='" + url + '\'' +
                 ", status=" + status +
                 ", " + currentLength +
                 "/" + totalLength +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DownloadEntity entity = (DownloadEntity) o;
+        return id.equals(entity.id);
     }
 }
