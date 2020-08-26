@@ -29,7 +29,7 @@ public class DownloadEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "DownloadEntity{" +
+        return "{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +

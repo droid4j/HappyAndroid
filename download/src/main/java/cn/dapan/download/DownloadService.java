@@ -5,7 +5,15 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class DownloadService extends Service {
+
+    private ExecutorService mExecutor;
+    private Map<String, DownloadTask> mTasks = new HashMap<>();
 
     @Nullable
     @Override
@@ -16,6 +24,7 @@ public class DownloadService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        mExecutor = Executors.newCachedThreadPool();
     }
 
     @Override
@@ -36,29 +45,43 @@ public class DownloadService extends Service {
             case Constants.KEY_DOWNLOAD_ADD:
                 startDownload(entity);
                 break;
+
+            case Constants.KEY_DOWNLOAD_RESUME:
+                resumeDownload(entity);
+                break;
+
+            case Constants.KEY_DOWNLOAD_CANCEL:
+                cancelDownload(entity);
+                break;
+
+            case Constants.KEY_DOWNLOAD_PAUSE:
+                pauseDownload(entity);
+                break;
         }
     }
 
-    private void startDownload(DownloadEntity entity) {
-        entity.status = DownloadEntity.DownloadStatus.waiting;
-        DataChanger.getInstance().postStatus(entity);
-
-        entity.totalLength = 1024 * 100;
-
-        for (int i = entity.currentLength; i < entity.totalLength; ) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            i += 1024;
-            entity.currentLength += 1024;
-            entity.status = DownloadEntity.DownloadStatus.downloading;
-            DataChanger.getInstance().postStatus(entity);
+    private void pauseDownload(DownloadEntity entity) {
+        DownloadTask task = mTasks.remove(entity.id);
+        if (task != null) {
+            task.pause();
         }
+    }
 
-        entity.status = DownloadEntity.DownloadStatus.completed;
-        DataChanger.getInstance().postStatus(entity);
+    private void cancelDownload(DownloadEntity entity) {
+        DownloadTask task = mTasks.remove(entity.id);
+        if (task != null) {
+            task.cancel();
+        }
+    }
+
+    private void resumeDownload(DownloadEntity entity) {
+        startDownload(entity);
+    }
+
+    private void startDownload(DownloadEntity entity) {
+        DownloadTask task = new DownloadTask(entity);
+        mTasks.put(entity.id, task);
+        mExecutor.execute(task);
     }
 
 }

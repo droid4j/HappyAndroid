@@ -8,19 +8,19 @@ public class DLog {
     private static final boolean DEBUG = true;
 
     private static String prefix() {
-        return "current thread: " + Thread.currentThread().getName() + "，";
+        return "[" + Thread.currentThread().getName() + "]，";
     }
 
     public static void d(String msg) {
         if (DEBUG) {
-            msg += prefix();
+            msg = prefix() + msg;
             Log.d(TAG, msg);
         }
     }
 
     public static void e(String msg) {
         if (DEBUG) {
-            msg += prefix();
+            msg = prefix() + msg;
             Log.e(TAG, msg);
         }
     }
