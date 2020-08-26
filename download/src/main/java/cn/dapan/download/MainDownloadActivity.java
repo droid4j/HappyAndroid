@@ -1,9 +1,12 @@
 package cn.dapan.download;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import cn.dapan.download.test.DownloadListActivity;
 
 public class MainDownloadActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,6 +28,8 @@ public class MainDownloadActivity extends AppCompatActivity implements View.OnCl
         mDownloadBtn.setOnClickListener(this);
         Button pauseBtn = findViewById(R.id.pauseBtn);
         pauseBtn.setOnClickListener(this);
+        Button listBtn = findViewById(R.id.listBtn);
+        listBtn.setOnClickListener(this);
         mDownloadManager = DownloadManager.getInstance(this);
     }
 
@@ -57,6 +62,9 @@ public class MainDownloadActivity extends AppCompatActivity implements View.OnCl
             } else if (entity.status == DownloadEntity.DownloadStatus.pause) {
                 mDownloadManager.resume(entity);
             }
+        } else if (v.getId() == R.id.listBtn) {
+            Intent intent = new Intent(this, DownloadListActivity.class);
+            startActivity(intent);
         }
     }
 }

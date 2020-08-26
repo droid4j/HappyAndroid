@@ -3,7 +3,9 @@
     package="cn.dapan.download">
 
     <application>
-        <activity android:name=".MainDownloadActivity"></activity>
+        <activity android:name=".test.DownloadListActivity"></activity>
+        <activity android:name=".MainDownloadActivity" />
+
         <service android:name=".DownloadService" />
     </application>
 
